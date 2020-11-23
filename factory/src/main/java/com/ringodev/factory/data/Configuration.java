@@ -1,15 +1,26 @@
 package com.ringodev.factory.data;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Configuration {
-    private  String handlebarType;
-    private  String handlebarMaterial;
-    private  String handlebarGearshift;
-    private  String handleMaterial;
+    private String handlebarType;
+    private String handlebarMaterial;
+    private String handlebarGearshift;
+    private String handleMaterial;
 
 
-    public Configuration(){
+    public Configuration() {
 
+    }
+
+    public List<String> getAll() {
+        List<String> list = new ArrayList<>(4);
+        if (handlebarType != null) list.add(handlebarType);
+        if (handlebarMaterial != null) list.add(handlebarMaterial);
+        if (handlebarGearshift != null) list.add(handlebarGearshift);
+        if (handleMaterial != null) list.add(handleMaterial);
+        return list;
     }
 
     public String getHandlebarType() {
