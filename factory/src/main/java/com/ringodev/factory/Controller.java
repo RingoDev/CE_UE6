@@ -1,6 +1,8 @@
 package com.ringodev.factory;
 
 import com.ringodev.factory.data.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +14,12 @@ import java.util.List;
 @RequestMapping("api")
 public class Controller {
 
+    private final Logger logger = LoggerFactory.getLogger(Controller.class);
+
     ValidatorService validator;
+
     @Autowired
-    Controller(ValidatorService validator){
+    Controller(ValidatorService validator) {
         this.validator = validator;
     }
 
@@ -35,22 +40,25 @@ public class Controller {
         return new ResponseEntity<>(validator.getPossibleGearshifts(handlebarType, handlebarMaterial), HttpStatus.OK);
     }
 
-    @GetMapping("/handleMaterial")
+    @GetMapping("/handleType")
     public ResponseEntity<List<String>> getHandleType(@RequestParam String handlebarType, @RequestParam String handlebarMaterial, @RequestParam String handlebarGearshift) {
-        if (handlebarType == null || handlebarMaterial == null || handlebarGearshift == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (handlebarType == null || handlebarMaterial == null || handlebarGearshift == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(validator.getPossibleHandles(handlebarType, handlebarMaterial, handlebarGearshift), HttpStatus.OK);
     }
 
-    @PostMapping("/configuration")
+    @PostMapping("/verify")
     public ResponseEntity<Object> postConfiguration(@RequestBody Configuration config) {
-        if (config.getAll().size() != 4) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-
-        // kontrollieren ob vollständig und valide
-        // an fibu senden
-        // an lieferanten senden
-
-        return new ResponseEntity<>(HttpStatus.OK);
+        logger.info(config.toString());
+        // Valid Configuration
+        if (validator.validateFullConfiguration(config)) {
+            // an fibu senden
+            // an lieferanten senden
+//            return new ResponseEntity<>(createOrder(config),HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-
 }

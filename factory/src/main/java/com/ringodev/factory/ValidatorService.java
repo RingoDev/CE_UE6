@@ -7,15 +7,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ValidatorService {
 
-    static List<String> handlebarTypes = List.of("Flatbarlenker", "Rennradlenker", "Bullhornlenker");
-    static List<String> handlebarMaterials = List.of("Aluminium", "Stahl", "Kunststoff");
-    static List<String> handlebarGearshifts = List.of("Kettenschaltung", "Nabenschaltung", "Tretlagerschaltung");
-    static List<String> handleTypes = List.of("Ledergriff", "Schaumstoffgriff", "Kunststoffgriff");
+    enum Part {
+        handlebarType, handlebarMaterial, handlebarGearshift, handleType
+    }
 
+    static Map<Part, List<String>> types = Map.of(
+            Part.handlebarType, List.of("Flatbarlenker", "Rennradlenker", "Bullhornlenker"),
+            Part.handlebarMaterial, List.of("Aluminium", "Stahl", "Kunststoff"),
+            Part.handlebarGearshift, List.of("Kettenschaltung", "Nabenschaltung", "Tretlagerschaltung"),
+            Part.handleType, List.of("Ledergriff", "Schaumstoffgriff", "Kunststoffgriff"));
 
     RestrictionRepository restrictionRepository;
 
@@ -26,12 +31,12 @@ public class ValidatorService {
 
 
     List<String> getPossibleHandlebarTypes() {
-        return handlebarTypes;
+        return types.get(Part.handlebarType);
     }
 
     List<String> getPossibleMaterials(String handlebarType) {
         List<String> result = new ArrayList<>(3);
-        for (String material : handlebarMaterials) {
+        for (String material : types.get(Part.handlebarMaterial)) {
             Configuration config = new Configuration();
             config.setHandlebarType(handlebarType);
             config.setHandlebarMaterial(material);
@@ -42,7 +47,7 @@ public class ValidatorService {
 
     List<String> getPossibleGearshifts(String handlebarType, String handlebarMaterial) {
         List<String> result = new ArrayList<>(3);
-        for (String gearshift : handlebarGearshifts) {
+        for (String gearshift : types.get(Part.handlebarGearshift)) {
             Configuration config = new Configuration();
             config.setHandlebarType(handlebarType);
             config.setHandlebarMaterial(handlebarMaterial);
@@ -54,7 +59,7 @@ public class ValidatorService {
 
     List<String> getPossibleHandles(String handlebarType, String handlebarMaterial, String handlebarGearshift) {
         List<String> result = new ArrayList<>(3);
-        for (String handle : handleTypes) {
+        for (String handle : types.get(Part.handleType)) {
             Configuration config = new Configuration();
             config.setHandlebarType(handlebarType);
             config.setHandlebarMaterial(handlebarMaterial);
@@ -65,6 +70,14 @@ public class ValidatorService {
         return result;
     }
 
+    // checks full Configuration
+    public boolean validateFullConfiguration(Configuration configuration) {
+        if (!types.get(Part.handlebarType).contains(configuration.getHandlebarType())) return false;
+        if (!types.get(Part.handlebarMaterial).contains(configuration.getHandlebarMaterial())) return false;
+        if (!types.get(Part.handlebarGearshift).contains(configuration.getHandlebarGearshift())) return false;
+        if (!types.get(Part.handleType).contains(configuration.getHandleType())) return false;
+        return validatePartialConfiguration(configuration);
+    }
 
     // checks partial configuration against all constraints in the DB
     public boolean validatePartialConfiguration(Configuration configuration) {

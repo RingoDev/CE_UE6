@@ -7,7 +7,9 @@ public class Configuration {
     private String handlebarType;
     private String handlebarMaterial;
     private String handlebarGearshift;
-    private String handleMaterial;
+    private String handleType;
+
+
 
 
     public Configuration() {
@@ -19,7 +21,7 @@ public class Configuration {
         if (handlebarType != null) list.add(handlebarType);
         if (handlebarMaterial != null) list.add(handlebarMaterial);
         if (handlebarGearshift != null) list.add(handlebarGearshift);
-        if (handleMaterial != null) list.add(handleMaterial);
+        if (handleType != null) list.add(handleType);
         return list;
     }
 
@@ -47,11 +49,21 @@ public class Configuration {
         this.handlebarGearshift = handlebarGearshift;
     }
 
-    public String getHandleMaterial() {
-        return handleMaterial;
+    public String getHandleType() {
+        return handleType;
     }
 
-    public void setHandleMaterial(String handleMaterial) {
-        this.handleMaterial = handleMaterial;
+    public void setHandleType(String handleType) {
+        this.handleType = handleType;
+    }
+
+    @Override
+    public String toString() {
+        return "Configuration{" +
+                "handlebarType='" + handlebarType + '\'' +
+                ", handlebarMaterial='" + handlebarMaterial + '\'' +
+                ", handlebarGearshift='" + handlebarGearshift + '\'' +
+                ", handleType='" + handleType + '\'' +
+                '}';
     }
 }
