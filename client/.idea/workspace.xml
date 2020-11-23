@@ -23,16 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="556e9090-3469-46e9-98d8-964de0b1995d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ConfigurationClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ConfigurationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ConfigurationClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/DataRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/OrderRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/ValidatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/ValidatorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/data/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/data/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../supplier/src/main/java/com/ringodev/supplier/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../supplier/src/main/java/com/ringodev/supplier/controller/Controller.java" afterDir="false" />
@@ -70,12 +64,25 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager">
+    <configuration name="ConfigurationClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ConfigurationClient" />
+      <module name="client" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -87,6 +94,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ConfigurationClient" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -96,7 +108,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606145806047</updated>
-      <workItem from="1606145807135" duration="91000" />
+      <workItem from="1606145807135" duration="4022000" />
     </task>
     <servers />
   </component>
@@ -119,6 +131,22 @@
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state x="3840" y="588" width="1024" height="852" key="#Project_Structure/0.27.2560.1413/2560.0.2560.1440@2560.0.2560.1440" timestamp="1606145812673" />
+    <state width="1494" height="302" key="GridCell.Tab.0.bottom" timestamp="1606149179172">
+      <screen x="2560" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1494" height="302" key="GridCell.Tab.0.bottom/0.27.2560.1413/2560.0.2560.1440@2560.0.2560.1440" timestamp="1606149179172" />
+    <state width="1494" height="302" key="GridCell.Tab.0.center" timestamp="1606149179172">
+      <screen x="2560" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1494" height="302" key="GridCell.Tab.0.center/0.27.2560.1413/2560.0.2560.1440@2560.0.2560.1440" timestamp="1606149179172" />
+    <state width="1494" height="302" key="GridCell.Tab.0.left" timestamp="1606149179172">
+      <screen x="2560" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1494" height="302" key="GridCell.Tab.0.left/0.27.2560.1413/2560.0.2560.1440@2560.0.2560.1440" timestamp="1606149179172" />
+    <state width="1494" height="302" key="GridCell.Tab.0.right" timestamp="1606149179172">
+      <screen x="2560" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1494" height="302" key="GridCell.Tab.0.right/0.27.2560.1413/2560.0.2560.1440@2560.0.2560.1440" timestamp="1606149179172" />
     <state x="3840" y="588" width="1024" height="852" key="SettingsEditor" timestamp="1606145897153">
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>
