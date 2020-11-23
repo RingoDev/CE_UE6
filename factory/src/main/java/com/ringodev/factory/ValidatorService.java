@@ -1,7 +1,7 @@
 package com.ringodev.factory;
 
 import com.ringodev.factory.data.Configuration;
-import com.ringodev.factory.data.Constraint;
+import com.ringodev.factory.data.Restriction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +17,11 @@ public class ValidatorService {
     static List<String> handleTypes = List.of("Ledergriff", "Schaumstoffgriff", "Kunststoffgriff");
 
 
-    ConstraintRepository constraintRepository;
+    RestrictionRepository restrictionRepository;
 
     @Autowired
-    ValidatorService(ConstraintRepository constraintRepository) {
-        this.constraintRepository = constraintRepository;
+    ValidatorService(RestrictionRepository restrictionRepository) {
+        this.restrictionRepository = restrictionRepository;
     }
 
 
@@ -35,7 +35,7 @@ public class ValidatorService {
             Configuration config = new Configuration();
             config.setHandlebarType(handlebarType);
             config.setHandlebarMaterial(material);
-            if (validateConfiguration(config)) result.add(material);
+            if (validatePartialConfiguration(config)) result.add(material);
         }
         return result;
     }
@@ -47,7 +47,7 @@ public class ValidatorService {
             config.setHandlebarType(handlebarType);
             config.setHandlebarMaterial(handlebarMaterial);
             config.setHandlebarGearshift(gearshift);
-            if (validateConfiguration(config)) result.add(gearshift);
+            if (validatePartialConfiguration(config)) result.add(gearshift);
         }
         return result;
     }
@@ -60,16 +60,16 @@ public class ValidatorService {
             config.setHandlebarMaterial(handlebarMaterial);
             config.setHandlebarGearshift(handlebarGearshift);
             config.setHandlebarMaterial(handle);
-            if (validateConfiguration(config)) result.add(handle);
+            if (validatePartialConfiguration(config)) result.add(handle);
         }
         return result;
     }
 
 
-    // checks configuration against all constraints in the DB
-    public boolean validateConfiguration(Configuration configuration) {
-        for (Constraint constraint : constraintRepository.findAll())
-            if (!constraint.validate(configuration)) return false;
+    // checks partial configuration against all constraints in the DB
+    public boolean validatePartialConfiguration(Configuration configuration) {
+        for (Restriction restriction : restrictionRepository.findAll())
+            if (!restriction.validate(configuration)) return false;
         return true;
     }
 }

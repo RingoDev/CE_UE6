@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 // part c1 can not be combined with c2
 @Entity
-public class Constraint {
+public class Restriction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,12 +16,12 @@ public class Constraint {
     String c1;
     String c2;
 
-    public Constraint(String c1,String c2){
+    public Restriction(String c1, String c2){
         this.c1 = c1;
         this.c2 = c2;
     }
 
-    public Constraint(){
+    public Restriction(){
 
     }
 
