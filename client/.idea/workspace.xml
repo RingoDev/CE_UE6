@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="556e9090-3469-46e9-98d8-964de0b1995d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ConfigurationClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/DataRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/ValidatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/ValidatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/data/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factory/src/main/java/com/ringodev/factory/data/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../supplier/src/main/java/com/ringodev/supplier/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../supplier/src/main/java/com/ringodev/supplier/controller/Controller.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1khHG7NAidvpdLPWt01JHK2PX0E" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="556e9090-3469-46e9-98d8-964de0b1995d" name="Default Changelist" comment="" />
+      <created>1606145806047</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606145806047</updated>
+      <workItem from="1606145807135" duration="91000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="3840" y="588" width="1024" height="852" key="#Project_Structure" timestamp="1606145812673">
+      <screen x="2560" y="0" width="2560" height="1440" />
+    </state>
+    <state x="3840" y="588" width="1024" height="852" key="#Project_Structure/0.27.2560.1413/2560.0.2560.1440@2560.0.2560.1440" timestamp="1606145812673" />
+    <state x="3840" y="588" width="1024" height="852" key="SettingsEditor" timestamp="1606145897153">
+      <screen x="2560" y="0" width="2560" height="1440" />
+    </state>
+    <state x="3840" y="588" width="1024" height="852" key="SettingsEditor/0.27.2560.1413/2560.0.2560.1440@2560.0.2560.1440" timestamp="1606145897153" />
+  </component>
+</project>
