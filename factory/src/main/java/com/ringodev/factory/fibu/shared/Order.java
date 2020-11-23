@@ -1,4 +1,4 @@
-package com.ringodev.factory.data;
+package com.ringodev.factory.fibu.shared;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,10 +16,9 @@ public class Order implements Serializable{
     private String handlebarGearshift;
     private String handleMaterial;
 
-    public Order(final long orderId, final String handlebarType,
+    public Order(final String handlebarType,
                  final String handlebarMaterial, final String handlebarGearshift,
                  final String handleMaterial) {
-        this.orderId = orderId;
         this.handlebarType = handlebarType;
         this.handlebarMaterial = handlebarMaterial;
         this.handlebarGearshift = handlebarGearshift;

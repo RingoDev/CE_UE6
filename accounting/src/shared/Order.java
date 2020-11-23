@@ -1,28 +1,26 @@
 package shared;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.text.MessageFormat;
 
 public class Order implements Serializable{
 
-    private final BigInteger orderId;
+    private long orderId;
     private final String handlebarType;
     private final String handlebarMaterial;
     private final String handlebarGearshift;
     private final String handleMaterial;
 
-    public Order(final BigInteger orderId, final String handlebarType,
+    public Order(final String handlebarType,
                            final String handlebarMaterial, final String handlebarGearshift,
                            final String handleMaterial) {
-        this.orderId = orderId;
         this.handlebarType = handlebarType;
         this.handlebarMaterial = handlebarMaterial;
         this.handlebarGearshift = handlebarGearshift;
         this.handleMaterial = handleMaterial;
     }
 
-    public BigInteger getOrderId(){
+    public long getOrderId(){
         return this.orderId;
     }
 

@@ -1,6 +1,8 @@
 package com.ringodev.factory;
 
 import com.ringodev.factory.data.Configuration;
+import com.ringodev.factory.fibu.shared.Order;
+import com.ringodev.factory.fibu.client.RunClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.List;
 
 @RestController
@@ -48,12 +52,14 @@ public class Controller {
     }
 
     @PostMapping("/verify")
-    public ResponseEntity<Object> postConfiguration(@RequestBody Configuration config) {
+    public ResponseEntity<Object> postConfiguration(@RequestBody Configuration config) throws RemoteException, NotBoundException {
 
         logger.info(config.toString());
         // Valid Configuration
         if (validator.validateFullConfiguration(config)) {
+            Order o = new Order(config.getHandlebarType(), config.getHandlebarMaterial(), config.getHandlebarGearshift(), config.getHandleType());
             // an fibu senden
+            RunClient.sendOrderToFibu(o);
             // an lieferanten senden
 //            return new ResponseEntity<>(createOrder(config),HttpStatus.OK);
             return new ResponseEntity<>(HttpStatus.OK);

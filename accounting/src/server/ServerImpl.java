@@ -7,16 +7,20 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 public class ServerImpl implements OrderServer {
 
-    private BigInteger orderId;
+    private long orderId;
     private String handlebarType;
     private String handlebarMaterial;
     private String handlebarGearshift;
     private String handleMaterial;
+
+    public ServerImpl() throws RemoteException {
+        UnicastRemoteObject.exportObject(this, 0);
+    }
 
     @Override
     public void sendOrder(Order o) throws RemoteException {
@@ -29,7 +33,7 @@ public class ServerImpl implements OrderServer {
 
         String s = "Bestellung " + orderId + ": "
                     + handlebarType + ", "
-                    + handleMaterial + ", "
+                    + handlebarMaterial + ", "
                     + handlebarGearshift + ", "
                     + handleMaterial;
 
