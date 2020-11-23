@@ -13,6 +13,15 @@ public class Restriction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
 
+    @Override
+    public String toString() {
+        return "Restriction{" +
+                "id=" + id +
+                ", c1='" + c1 + '\'' +
+                ", c2='" + c2 + '\'' +
+                '}';
+    }
+
     String c1;
     String c2;
 
@@ -26,7 +35,8 @@ public class Restriction {
     }
 
     public boolean validate(Configuration config) {
-        return !config.getAll().contains(c1) || !config.getAll().contains(c2);
+        if(config.getAll().contains(c1) && config.getAll().contains(c2)) return false;
+        return true;
     }
 
     public long getId() {

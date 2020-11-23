@@ -1,15 +1,20 @@
-package com.ringodev.factory.fibu.client;
+package client;
 
-import com.ringodev.factory.fibu.shared.Order;
+import shared.Order;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class RunClient {
 
-    public static void sendOrderToFibu(Order o) throws RemoteException, NotBoundException {
+    public static void sendOrderToFibu(Order o) throws RemoteException {
         final RMIClient client = new RMIClient();
-        client.startClient();
+        try {
+            client.startClient();
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        }
+
 
         try {
             client.getServer().sendOrder(o);

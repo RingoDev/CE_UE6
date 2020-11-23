@@ -1,4 +1,4 @@
-package com.ringodev.factory.fibu.shared;
+package shared;
 
 import java.rmi.NotBoundException;
 import java.rmi.Remote;

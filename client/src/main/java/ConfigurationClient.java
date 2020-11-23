@@ -6,7 +6,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ConfigurationClient {
 
@@ -16,34 +15,22 @@ public class ConfigurationClient {
 
     public static void main(String[] args) {
 
-        // could request these from server too but exercise doesn't require it
-        List<String> options = Arrays.stream(Part.values()).map(Enum::toString).collect(Collectors.toList());
-
-        // uncomment to run tests
-//        runTestsSafely(options);
-
         // uncomment to run program for the user
-        runProgramSafely(options);
-
+        runProgramSafely();
     }
 
-    /**
-     * Wrapper to catch unexpected HTTP Connection Errors
-     *
-     * @param options list of Options
-     */
-    private static void runProgramSafely(List<String> options) {
+    private static void runProgramSafely() {
         try {
-            runProgram(options);
+            runProgram();
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("The server wasn't ready for your request.");
             System.out.println("The Configuration Process will start again.\n");
-            runProgramSafely(options);
+            runProgramSafely();
         }
     }
 
-    private static void runProgram(List<String> options) throws IOException, InterruptedException {
+    private static void runProgram() throws IOException, InterruptedException {
         Scanner in = new Scanner(System.in);
 
         while (true) {
@@ -81,7 +68,6 @@ public class ConfigurationClient {
 
     private static List<String> getOptions(Part part, Map<Part, String> selectedOptions) throws IOException, InterruptedException {
 
-
         StringBuilder sb = new StringBuilder("http://localhost:8080/api/" + part);
 
         boolean isFirst = true;
@@ -118,7 +104,7 @@ public class ConfigurationClient {
 
         System.out.println(response.statusCode());
 
-        if (response.statusCode() == 200) return objectMapper.convertValue(response.body(), Order.class);
+        if (response.statusCode() == 200) return objectMapper.readValue(response.body(), Order.class);
         else if (response.statusCode() == 400) throw new IllegalArgumentException(response.body());
         else throw new IOException();
     }

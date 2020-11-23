@@ -25,6 +25,8 @@ public class ServerImpl implements OrderServer {
     @Override
     public void sendOrder(Order o) throws RemoteException {
 
+        System.out.println("Got here");
+
         orderId = o.getOrderId();
         handlebarType = o.getHandlebarType();
         handlebarMaterial = o.getHandlebarMaterial();

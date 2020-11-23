@@ -1,14 +1,15 @@
 package com.ringodev.factory;
 
 import com.ringodev.factory.data.Configuration;
-import com.ringodev.factory.fibu.shared.Order;
-import com.ringodev.factory.fibu.client.RunClient;
+import client.RunClient;
+import com.ringodev.factory.data.OrderImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import shared.Order;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -20,11 +21,13 @@ public class Controller {
 
     private final Logger logger = LoggerFactory.getLogger(Controller.class);
 
+    OrderRepository orderRepository;
     ValidatorService validator;
 
     @Autowired
-    Controller(ValidatorService validator) {
+    Controller(ValidatorService validator, OrderRepository orderRepository) {
         this.validator = validator;
+        this.orderRepository = orderRepository;
     }
 
     @GetMapping("/handlebarType")
@@ -52,17 +55,21 @@ public class Controller {
     }
 
     @PostMapping("/verify")
-    public ResponseEntity<Object> postConfiguration(@RequestBody Configuration config) throws RemoteException, NotBoundException {
+    public ResponseEntity<Object> postConfiguration(@RequestBody Configuration config) throws RemoteException {
 
-        logger.info(config.toString());
-        // Valid Configuration
         if (validator.validateFullConfiguration(config)) {
-            Order o = new Order(config.getHandlebarType(), config.getHandlebarMaterial(), config.getHandlebarGearshift(), config.getHandleType());
-            // an fibu senden
-            RunClient.sendOrderToFibu(o);
+            OrderImpl myOrder = new OrderImpl(config.getHandlebarType(), config.getHandlebarMaterial(), config.getHandlebarGearshift(), config.getHandleType());
+            // to set id automatically
+            orderRepository.save(myOrder);
+
+            logger.info(myOrder.toOrder().toString());
+
+            RunClient.sendOrderToFibu(myOrder.toOrder());
+
             // an lieferanten senden
-//            return new ResponseEntity<>(createOrder(config),HttpStatus.OK);
-            return new ResponseEntity<>(HttpStatus.OK);
+
+            return new ResponseEntity<>(myOrder.toOrder(),HttpStatus.OK);
+
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

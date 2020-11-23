@@ -1,5 +1,5 @@
-package com.ringodev.factory.fibu.client;
-import com.ringodev.factory.fibu.shared.OrderServer;
+package client;
+import shared.OrderServer;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;

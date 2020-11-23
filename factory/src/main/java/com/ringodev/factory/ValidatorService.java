@@ -29,7 +29,6 @@ public class ValidatorService {
         this.restrictionRepository = restrictionRepository;
     }
 
-
     List<String> getPossibleHandlebarTypes() {
         return types.get(Part.handlebarType);
     }
@@ -64,7 +63,7 @@ public class ValidatorService {
             config.setHandlebarType(handlebarType);
             config.setHandlebarMaterial(handlebarMaterial);
             config.setHandlebarGearshift(handlebarGearshift);
-            config.setHandlebarMaterial(handle);
+            config.setHandleType(handle);
             if (validatePartialConfiguration(config)) result.add(handle);
         }
         return result;
@@ -76,13 +75,17 @@ public class ValidatorService {
         if (!types.get(Part.handlebarMaterial).contains(configuration.getHandlebarMaterial())) return false;
         if (!types.get(Part.handlebarGearshift).contains(configuration.getHandlebarGearshift())) return false;
         if (!types.get(Part.handleType).contains(configuration.getHandleType())) return false;
+        System.out.println("Got here");
         return validatePartialConfiguration(configuration);
     }
 
     // checks partial configuration against all constraints in the DB
     public boolean validatePartialConfiguration(Configuration configuration) {
         for (Restriction restriction : restrictionRepository.findAll())
-            if (!restriction.validate(configuration)) return false;
+            if (!restriction.validate(configuration)) {
+                System.out.println(restriction);
+                return false;
+            }
         return true;
     }
 }
