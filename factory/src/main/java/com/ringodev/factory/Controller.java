@@ -3,15 +3,15 @@ package com.ringodev.factory;
 import com.ringodev.factory.data.Configuration;
 import client.RunClient;
 import com.ringodev.factory.data.OrderImpl;
+import org.hibernate.hql.internal.ast.exec.SimpleUpdateExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import shared.Order;
 
-import java.rmi.NotBoundException;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -23,11 +23,14 @@ public class Controller {
 
     OrderRepository orderRepository;
     ValidatorService validator;
+    SupplierService supplierService;
+    
 
     @Autowired
-    Controller(ValidatorService validator, OrderRepository orderRepository) {
+    Controller(ValidatorService validator, OrderRepository orderRepository, SupplierService supplierService) {
         this.validator = validator;
         this.orderRepository = orderRepository;
+        this.supplierService = supplierService;
     }
 
     @GetMapping("/handlebarType")
@@ -62,13 +65,26 @@ public class Controller {
             // to set id automatically
             orderRepository.save(myOrder);
 
-            logger.info(myOrder.toOrder().toString());
+            try{
+                RunClient.sendOrderToFibu(myOrder.toOrder());
+            }catch(RemoteException e){
+                logger.warn("Couldn't submit Order to FIBU");
+                logger.warn(e.getMessage());
+            }
 
-            RunClient.sendOrderToFibu(myOrder.toOrder());
+            SupplierService.DiscreteOffer d;
 
-            // an lieferanten senden
+            try {
+               d = supplierService.sendRequests(myOrder);
+                myOrder.setPrice(d.price);
+                myOrder.setDeliveryDate(d.date);
+                return new ResponseEntity<>(myOrder,HttpStatus.OK);
+            } catch (IOException e) {
+                logger.warn("Couldn't send Order to Suppliers");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
 
-            return new ResponseEntity<>(myOrder.toOrder(),HttpStatus.OK);
+
 
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

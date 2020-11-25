@@ -9,6 +9,24 @@ public class Order implements Serializable {
     private String handlebarMaterial;
     private String handlebarGearshift;
     private String handleMaterial;
+    private int price;
+    private long deliveryDate;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public long getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(long deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
 
     public void setOrderId(long orderId) {
         this.orderId = orderId;

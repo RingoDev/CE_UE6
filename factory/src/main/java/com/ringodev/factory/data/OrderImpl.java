@@ -20,6 +20,8 @@ public class OrderImpl implements Serializable{
     private String handlebarMaterial;
     private String handlebarGearshift;
     private String handleMaterial;
+    private int price;
+    private long deliveryDate;
 
     public OrderImpl(final String handlebarType,
                      final String handlebarMaterial, final String handlebarGearshift,
@@ -65,6 +67,22 @@ public class OrderImpl implements Serializable{
 
     public String getHandleMaterial(){
         return this.handleMaterial;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public long getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(long deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
     @Override public String toString() {

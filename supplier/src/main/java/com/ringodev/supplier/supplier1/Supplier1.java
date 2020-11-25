@@ -1,4 +1,4 @@
-package com.ringodev.supplier.controller;
+package com.ringodev.supplier.supplier1;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,17 +13,25 @@ import java.util.Date;
 import java.util.Random;
 
 @RestController
-@RequestMapping("api")
-public class Controller {
+@RequestMapping("supplier1")
+public class Supplier1 {
 
-    private final Logger logger = LoggerFactory.getLogger(Controller.class);
+    private final Logger logger = LoggerFactory.getLogger(Supplier1.class);
 
-    @PostMapping("/offer")
+    @PostMapping("/requestOffer")
     public ResponseEntity<Object> getOffer(@RequestBody Offer offer) {
-        logger.info("Got an offer");
-        return new ResponseEntity<>(new Response(new Random().nextInt(100), new Date()), HttpStatus.OK);
+
+        logger.info("Supplier1 got an offer");
+
+        long random = new Random().nextInt(14) * 24 * 60 * 60 * 1000;
+
+        Date randomDate = new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000 + random);
+        int randomPrice = 30+new Random().nextInt(40);
+
+        return new ResponseEntity<>( new Response(randomPrice,randomDate),HttpStatus.OK);
     }
 
+    // consists of a price and a delivery date
     static class Response {
         Response() {
         }

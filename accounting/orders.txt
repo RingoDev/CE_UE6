@@ -1,5 +1,2 @@
+
 Bestellung 9: Rennradlenker, Stahl, Kettenschaltung, Rennradlenker
-Bestellung 10: Flatbarlenker, Stahl, Kettenschaltung, Flatbarlenker
-Bestellung 11: Flatbarlenker, Aluminium, Kettenschaltung, Flatbarlenker
-Bestellung 12: Flatbarlenker, Aluminium, Kettenschaltung, Flatbarlenker
-Bestellung 13: Flatbarlenker, Aluminium, Kettenschaltung, Flatbarlenker
