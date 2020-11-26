@@ -3,7 +3,6 @@ package com.ringodev.factory;
 import com.ringodev.factory.data.Configuration;
 import client.RunClient;
 import com.ringodev.factory.data.OrderImpl;
-import org.hibernate.hql.internal.ast.exec.SimpleUpdateExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("api")
 public class Controller {
@@ -24,7 +24,7 @@ public class Controller {
     OrderRepository orderRepository;
     ValidatorService validator;
     SupplierService supplierService;
-    
+
 
     @Autowired
     Controller(ValidatorService validator, OrderRepository orderRepository, SupplierService supplierService) {
@@ -52,6 +52,7 @@ public class Controller {
 
     @GetMapping("/handleType")
     public ResponseEntity<List<String>> getHandleType(@RequestParam String handlebarType, @RequestParam String handlebarMaterial, @RequestParam String handlebarGearshift) {
+        System.out.println("Whatsup");
         if (handlebarType == null || handlebarMaterial == null || handlebarGearshift == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(validator.getPossibleHandles(handlebarType, handlebarMaterial, handlebarGearshift), HttpStatus.OK);
@@ -60,14 +61,15 @@ public class Controller {
     @PostMapping("/verify")
     public ResponseEntity<Object> postConfiguration(@RequestBody Configuration config) throws RemoteException {
 
+        logger.info("Got a Configuration");
         if (validator.validateFullConfiguration(config)) {
             OrderImpl myOrder = new OrderImpl(config.getHandlebarType(), config.getHandlebarMaterial(), config.getHandlebarGearshift(), config.getHandleType());
             // to set id automatically
             orderRepository.save(myOrder);
 
-            try{
+            try {
                 RunClient.sendOrderToFibu(myOrder.toOrder());
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 logger.warn("Couldn't submit Order to FIBU");
                 logger.warn(e.getMessage());
             }
@@ -75,15 +77,14 @@ public class Controller {
             SupplierService.DiscreteOffer d;
 
             try {
-               d = supplierService.sendRequests(myOrder);
+                d = supplierService.sendRequests(myOrder);
                 myOrder.setPrice(d.price);
                 myOrder.setDeliveryDate(d.date);
-                return new ResponseEntity<>(myOrder,HttpStatus.OK);
-            } catch (IOException e) {
-                logger.warn("Couldn't send Order to Suppliers");
+                return new ResponseEntity<>(myOrder, HttpStatus.OK);
+            } catch (Exception e) {
+                logger.warn("Couldn't get Offer from Suppliers");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-
 
 
         } else {
