@@ -85,7 +85,7 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return MessageFormat.format(
-                "Order: '{'orderId=''{0}'', handlebarType=''{1}'', handlebarMaterial=''{2}'', handlebarGearshift=''{3}'', handleMaterial=''{4}'''}'",
-                orderId, handlebarType, handlebarMaterial, handlebarGearshift, handleMaterial);
+                "Order: '{'orderId=''{0}'', handlebarType=''{1}'', handlebarMaterial=''{2}'', handlebarGearshift=''{3}'', handleMaterial=''{4}'', price=''{5}'', deliveryDate=''{6}'''}'",
+                orderId, handlebarType, handlebarMaterial, handlebarGearshift, handleMaterial, price, deliveryDate);
     }
 }
