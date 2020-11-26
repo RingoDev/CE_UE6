@@ -6,6 +6,15 @@ import Selector from "./Selector";
 
 const myAxios = axios.create({baseURL: "http://localhost:8080/api"})
 
+interface Order {
+    orderId: number
+    handlebarType: string
+    handlebarMaterial: string
+    handlebarGearshift: string
+    handleMaterial: string
+    deliveryDate: number
+}
+
 const App: React.FC = () => {
 
 
@@ -14,6 +23,7 @@ const App: React.FC = () => {
     const [handlebarMaterial, setHandlebarMaterial] = useState<string>()
     const [handlebarGearshift, setHandlebarGearshift] = useState<string>()
     const [handleType, setHandleType] = useState<string>()
+    const [order, setOrder] = useState<Order>()
 
 
     const [handlebarTypes, setHandlebarTypes] = useState<string[]>()
@@ -87,24 +97,33 @@ const App: React.FC = () => {
             <>
                 <Selector last={true} list={handleTypes} submit={(option: string) => {
                     setHandleType(option)
-                        console.log("Verifying")
-                        myAxios.post('verify', {
-                            handlebarType,
-                            handlebarMaterial,
-                            handlebarGearshift,
-                            handleType: option
+                    console.log("Verifying")
+                    myAxios.post('verify', {
+                        handlebarType,
+                        handlebarMaterial,
+                        handlebarGearshift,
+                        handleType: option
+                    })
+                        .then((res) => {
+                            setOrder(res.data)
                         })
-                            .then((res) => {
-                                setPending(false)
-                            })
-                    }
+                }
                 }/>
             </>
         )
     }
 
-
-    return (<>Loading ...</>)
+    if (order === undefined) return <p>Loading</p>
+    else return (
+        <>
+            <div>{order.orderId}</div>
+            <div>{order.handlebarType}</div>
+            <div>{order.handlebarMaterial}</div>
+            <div>{order.handlebarGearshift}</div>
+            <div>{order.handleMaterial}</div>
+            <div>{new Date(order.deliveryDate).toDateString()}</div>
+        </>
+    )
 
 
 }

@@ -22,7 +22,7 @@ public class Supplier2 {
     @PostMapping("/requestOffer")
     public ResponseEntity<Object> getOffer(@RequestBody Offer offer) {
 
-        logger.info("Supplier2 got an offer");
+        logger.info("Supplier2 got a request");
 
         long random = new Random().nextInt(14) * 24 * 60 * 60 * 1000;
 
