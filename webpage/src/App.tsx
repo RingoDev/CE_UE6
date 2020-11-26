@@ -24,8 +24,6 @@ const App: React.FC = () => {
     const [handlebarGearshift, setHandlebarGearshift] = useState<string>()
     const [handleType, setHandleType] = useState<string>()
     const [order, setOrder] = useState<Order>()
-
-
     const [handlebarTypes, setHandlebarTypes] = useState<string[]>()
     const [handlebarMaterials, setHandlebarMaterials] = useState<string[]>()
     const [handlebarGearshifts, setHandlebarGearshifts] = useState<string[]>()
@@ -33,7 +31,6 @@ const App: React.FC = () => {
 
 
     useEffect(() => {
-        console.log("Used effect")
         myAxios.get('handlebarType')
             .then((res) => {
                 setHandlebarTypes(res.data)
@@ -89,10 +86,8 @@ const App: React.FC = () => {
             </>
         )
     }
-    if (handlebarType && handlebarMaterial && handlebarGearshift && !handleTypes) {
 
-        setPending(true)
-    } else if (!handleType && handleTypes) {
+    if (!handleType && handleTypes) {
         return (
             <>
                 <Selector last={true} list={handleTypes} submit={(option: string) => {
@@ -124,8 +119,6 @@ const App: React.FC = () => {
             <div>{new Date(order.deliveryDate).toDateString()}</div>
         </>
     )
-
-
 }
 
 export default App;
