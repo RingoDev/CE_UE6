@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ringodev.factory.data.OrderImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParseException;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -13,6 +15,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,8 +23,23 @@ import java.util.Map;
 @Service
 public class SupplierService {
     Logger logger = LoggerFactory.getLogger(SupplierService.class);
+    Environment env;
+    Map<String, String> suppliers;
 
-    Map<String, String> suppliers = Map.of("supplier1", "http://localhost:8081/supplier1", "supplier2", "http://localhost:8081/supplier2");
+    @Autowired
+    SupplierService(Environment env) {
+        this.env = env;
+        if (Arrays.asList(env.getActiveProfiles()).contains("production"))
+            suppliers = Map.of(
+                    "supplier1", "http://suppliers:8081/supplier1",
+                    "supplier2", "http://suppliers:8081/supplier2");
+        else {
+            suppliers = Map.of(
+                    "supplier1", "http://localhost:8081/supplier1",
+                    "supplier2", "http://localhost:8081/supplier2");
+        }
+    }
+
 
     public DiscreteOffer sendRequests(OrderImpl order) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();

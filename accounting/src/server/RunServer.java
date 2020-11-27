@@ -14,6 +14,5 @@ public class RunServer {
         final Registry registry = LocateRegistry.createRegistry(1099);
         registry.bind("OrderServer", server);
         System.out.println("Server started");
-
     }
 }

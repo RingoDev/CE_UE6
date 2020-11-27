@@ -3,8 +3,14 @@ import './App.css';
 import axios from 'axios';
 import Selector from "./Selector";
 
+let baseURL = "http://localhost:8080/api"
 
-const myAxios = axios.create({baseURL: "http://localhost:8080/api"})
+// if (process.env.NODE_ENV === 'production') {
+//     console.log("Running in docker container")
+//     baseURL = "http://factory:8080/api"
+// }
+
+const myAxios = axios.create({baseURL})
 
 interface Order {
     orderId: number

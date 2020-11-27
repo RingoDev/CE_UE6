@@ -6,12 +6,12 @@ import com.ringodev.factory.data.OrderImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.Arrays;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -24,13 +24,15 @@ public class Controller {
     OrderRepository orderRepository;
     ValidatorService validator;
     SupplierService supplierService;
+    Environment env;
 
 
     @Autowired
-    Controller(ValidatorService validator, OrderRepository orderRepository, SupplierService supplierService) {
+    Controller(Environment env,ValidatorService validator, OrderRepository orderRepository, SupplierService supplierService) {
         this.validator = validator;
         this.orderRepository = orderRepository;
         this.supplierService = supplierService;
+        this.env = env;
     }
 
     @GetMapping("/handlebarType")
@@ -68,7 +70,7 @@ public class Controller {
             orderRepository.save(myOrder);
 
             try {
-                RunClient.sendOrderToFibu(myOrder.toOrder());
+                RunClient.sendOrderToFibu(myOrder.toOrder(), Arrays.asList(env.getActiveProfiles()).contains("production") ? "accounting":"localhost");
             } catch (RemoteException e) {
                 logger.warn("Couldn't submit Order to FIBU");
                 logger.warn(e.getMessage());

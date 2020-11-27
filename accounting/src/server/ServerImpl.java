@@ -38,7 +38,7 @@ public class ServerImpl implements OrderServer {
                     + handleMaterial;
 
         try {
-            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("orders.txt", true)));
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("fibu/orders.txt", true)));
             writer.println(s);
             writer.flush();
             writer.close();

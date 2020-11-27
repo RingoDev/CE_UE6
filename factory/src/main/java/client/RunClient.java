@@ -7,10 +7,10 @@ import java.rmi.RemoteException;
 
 public class RunClient {
 
-    public static void sendOrderToFibu(Order o) throws RemoteException {
+    public static void sendOrderToFibu(Order o,String host) throws RemoteException {
         final RMIClient client = new RMIClient();
         try {
-            client.startClient();
+            client.startClient(host);
         } catch (NotBoundException e) {
             e.printStackTrace();
         }

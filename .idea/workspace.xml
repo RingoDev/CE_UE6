@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6f524726-bbdc-42fa-984a-5998bb393cbc" name="Default Changelist" comment="" />
+    <list default="true" id="6f524726-bbdc-42fa-984a-5998bb393cbc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/accounting/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounting/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/supplier/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpage/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpage/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounting/orders.txt" beforeDir="false" afterPath="$PROJECT_DIR$/accounting/fibu/orders.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounting/src/server/RunServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/accounting/src/server/RunServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounting/src/server/ServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/accounting/src/server/ServerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory/src/main/java/client/RMIClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory/src/main/java/client/RMIClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory/src/main/java/client/RunClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory/src/main/java/client/RunClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory/src/main/java/com/ringodev/factory/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory/src/main/java/com/ringodev/factory/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory/src/main/java/com/ringodev/factory/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory/src/main/java/com/ringodev/factory/SupplierService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/factory/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpage/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/webpage/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpage/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webpage/src/App.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +39,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
@@ -43,6 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606073269178</updated>
       <workItem from="1606073272258" duration="792000" />
+      <workItem from="1606468489572" duration="9995000" />
     </task>
     <servers />
   </component>

@@ -10,9 +10,9 @@ public class RMIClient {
 
         private OrderServer server;
 
-        public void startClient() throws RemoteException, NotBoundException {
+        public void startClient(String host) throws RemoteException, NotBoundException {
             //connection to server
-            final Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            final Registry registry = LocateRegistry.getRegistry(host, 1099);
             //search server
             server = (OrderServer) registry.lookup("OrderServer");
         }
