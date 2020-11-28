@@ -75,12 +75,13 @@ public class Controller {
                 logger.warn(e.getMessage());
             }
 
-            SupplierService.DiscreteOffer d;
+            SupplierService.DiscreteOffer chosenOffer;
 
             try {
-                d = supplierService.sendRequests(myOrder);
-                myOrder.setPrice(d.price);
-                myOrder.setDeliveryDate(d.date);
+                chosenOffer = supplierService.sendRequests(myOrder);
+                myOrder.setPrice(chosenOffer.price);
+                myOrder.setDeliveryDate(chosenOffer.date);
+                orderRepository.save(myOrder);
                 return new ResponseEntity<>(myOrder, HttpStatus.OK);
             } catch (Exception e) {
                 logger.warn("Couldn't get Offer from Suppliers");
