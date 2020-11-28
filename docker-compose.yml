@@ -19,10 +19,10 @@ services:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=production
-  webpage:
-    build: ./webpage
-    image: "ringodev/ce-webpage:latest"
-    ports:
-      - "3000:3000"
+#  webpage:
+#    build: ./webpage
+#    image: "ringodev/ce-webpage:latest"
+#    ports:
+#      - "3000:3000"
 volumes:
   fibu:

@@ -2,17 +2,13 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from 'axios';
 import Selector from "./Selector";
+import OrderComponent from "./Order";
 
 let baseURL = "http://localhost:8080/api"
 
-// if (process.env.NODE_ENV === 'production') {
-//     console.log("Running in docker container")
-//     baseURL = "http://factory:8080/api"
-// }
-
 const myAxios = axios.create({baseURL})
 
-interface Order {
+export interface Order {
     orderId: number
     handlebarType: string
     handlebarMaterial: string
@@ -45,18 +41,19 @@ const App: React.FC = () => {
         setPending(true)
     }, [])
 
-    if (pending) return (<>Loading ...</>)
+    if (pending) return (<></>)
 
     if (!handlebarType && handlebarTypes) {
         return (
             <>
-                <Selector list={handlebarTypes} submit={(option: string) => {
+                <Selector type={"HANDLEBAR"} list={handlebarTypes} submit={(option: string) => {
                     setHandlebarType(option)
                     myAxios.get('handlebarMaterial?handlebarType=' + option)
                         .then((res) => {
                             setHandlebarMaterials(res.data)
                             setPending(false)
                         })
+                    setPending(true)
                 }}/>
             </>
         )
@@ -64,13 +61,15 @@ const App: React.FC = () => {
     if (!handlebarMaterial && handlebarMaterials) {
         return (
             <>
-                <Selector list={handlebarMaterials}
+                <Selector type={"MATERIAL"} list={handlebarMaterials}
                           submit={(option: string) => {
                               setHandlebarMaterial(option)
                               myAxios.get('handlebarGearshift?handlebarType=' + handlebarType + '&handlebarMaterial=' + option)
                                   .then((res) => {
                                       setHandlebarGearshifts(res.data)
+                                      setPending(false);
                                   })
+                              setPending(true)
                           }}/>
             </>
         )
@@ -78,7 +77,7 @@ const App: React.FC = () => {
     if (!handlebarGearshift && handlebarGearshifts) {
         return (
             <>
-                <Selector list={handlebarGearshifts}
+                <Selector  type={"GEARSHIFT"} list={handlebarGearshifts}
                           submit={(option: string) => {
                               setHandlebarGearshift(option)
                               myAxios.get('handleType?handlebarType=' + handlebarType + '&handlebarMaterial=' + handlebarMaterial + '&handlebarGearshift=' + option)
@@ -87,6 +86,7 @@ const App: React.FC = () => {
                                           setPending(false)
                                       }
                                   )
+                              setPending(true)
                           }}
                 />
             </>
@@ -96,7 +96,7 @@ const App: React.FC = () => {
     if (!handleType && handleTypes) {
         return (
             <>
-                <Selector last={true} list={handleTypes} submit={(option: string) => {
+                <Selector type={"HANDLE"} last={true} list={handleTypes} submit={(option: string) => {
                     setHandleType(option)
                     console.log("Verifying")
                     myAxios.post('verify', {
@@ -107,7 +107,9 @@ const App: React.FC = () => {
                     })
                         .then((res) => {
                             setOrder(res.data)
+                            setPending(false)
                         })
+                    setPending(true)
                 }
                 }/>
             </>
@@ -117,12 +119,7 @@ const App: React.FC = () => {
     if (order === undefined) return <p>Loading</p>
     else return (
         <>
-            <div>{order.orderId}</div>
-            <div>{order.handlebarType}</div>
-            <div>{order.handlebarMaterial}</div>
-            <div>{order.handlebarGearshift}</div>
-            <div>{order.handleMaterial}</div>
-            <div>{new Date(order.deliveryDate).toDateString()}</div>
+            <OrderComponent order={order}/>
         </>
     )
 }
