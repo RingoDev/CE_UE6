@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6f524726-bbdc-42fa-984a-5998bb393cbc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webpage/src/Order.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webpage/src/Wrapper.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounting/fibu/orders.txt" beforeDir="false" afterPath="$PROJECT_DIR$/accounting/fibu/orders.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpage/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/webpage/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpage/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/webpage/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpage/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/webpage/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpage/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webpage/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpage/src/Selector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webpage/src/Selector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpage/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/webpage/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpage/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webpage/src/index.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="6f524726-bbdc-42fa-984a-5998bb393cbc" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +47,7 @@
       <workItem from="1606073272258" duration="792000" />
       <workItem from="1606468489572" duration="9995000" />
       <workItem from="1606555620603" duration="38000" />
-      <workItem from="1606556170977" duration="681000" />
+      <workItem from="1606556170977" duration="906000" />
     </task>
     <servers />
   </component>

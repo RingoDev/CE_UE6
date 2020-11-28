@@ -13,3 +13,6 @@ Bestellung 20: Flatbarlenker, Aluminium, Kettenschaltung, Flatbarlenker
 Bestellung 21: Flatbarlenker, Aluminium, Kettenschaltung, Flatbarlenker
 Bestellung 22: Flatbarlenker, Stahl, Kettenschaltung, Flatbarlenker
 Bestellung 23: Rennradlenker, Stahl, Kettenschaltung, Rennradlenker
+Bestellung 9: Flatbarlenker, Aluminium, Kettenschaltung, Flatbarlenker
+Bestellung 10: Flatbarlenker, Aluminium, Kettenschaltung, Flatbarlenker
+Bestellung 9: Flatbarlenker, Aluminium, Kettenschaltung, Flatbarlenker
