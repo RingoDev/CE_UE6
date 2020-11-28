@@ -6,36 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class ValidatorService {
 
-    enum Part {
-        handlebarType, handlebarMaterial, handlebarGearshift, handleType
-    }
-
-    static Map<Part, List<String>> types = Map.of(
-            Part.handlebarType, List.of("Flatbarlenker", "Rennradlenker", "Bullhornlenker"),
-            Part.handlebarMaterial, List.of("Aluminium", "Stahl", "Kunststoff"),
-            Part.handlebarGearshift, List.of("Kettenschaltung", "Nabenschaltung", "Tretlagerschaltung"),
-            Part.handleType, List.of("Ledergriff", "Schaumstoffgriff", "Kunststoffgriff"));
-
+    OptionRepository optionRepository;
     RestrictionRepository restrictionRepository;
 
     @Autowired
-    ValidatorService(RestrictionRepository restrictionRepository) {
+    ValidatorService(OptionRepository optionRepository,RestrictionRepository restrictionRepository) {
         this.restrictionRepository = restrictionRepository;
+        this.optionRepository = optionRepository;
+    }
+
+    private Map<Part,List<String>> getOptions(){
+        Map<Part,List<String>> map = new HashMap<>();
+        this.optionRepository.findAll().forEach( o -> map.put(o.part,o.types));
+        return map;
     }
 
     List<String> getPossibleHandlebarTypes() {
-        return types.get(Part.handlebarType);
+        return this.getOptions().get(Part.handlebarType);
     }
 
     List<String> getPossibleMaterials(String handlebarType) {
         List<String> result = new ArrayList<>(3);
-        for (String material : types.get(Part.handlebarMaterial)) {
+        for (String material : getOptions().get(Part.handlebarMaterial)) {
             Configuration config = new Configuration();
             config.setHandlebarType(handlebarType);
             config.setHandlebarMaterial(material);
@@ -46,7 +45,7 @@ public class ValidatorService {
 
     List<String> getPossibleGearshifts(String handlebarType, String handlebarMaterial) {
         List<String> result = new ArrayList<>(3);
-        for (String gearshift : types.get(Part.handlebarGearshift)) {
+        for (String gearshift : getOptions().get(Part.handlebarGearshift)) {
             Configuration config = new Configuration();
             config.setHandlebarType(handlebarType);
             config.setHandlebarMaterial(handlebarMaterial);
@@ -58,7 +57,7 @@ public class ValidatorService {
 
     List<String> getPossibleHandles(String handlebarType, String handlebarMaterial, String handlebarGearshift) {
         List<String> result = new ArrayList<>(3);
-        for (String handle : types.get(Part.handleType)) {
+        for (String handle : getOptions().get(Part.handleType)) {
             Configuration config = new Configuration();
             config.setHandlebarType(handlebarType);
             config.setHandlebarMaterial(handlebarMaterial);
@@ -71,10 +70,10 @@ public class ValidatorService {
 
     // checks full Configuration
     public boolean validateFullConfiguration(Configuration configuration) {
-        if (!types.get(Part.handlebarType).contains(configuration.getHandlebarType())) return false;
-        if (!types.get(Part.handlebarMaterial).contains(configuration.getHandlebarMaterial())) return false;
-        if (!types.get(Part.handlebarGearshift).contains(configuration.getHandlebarGearshift())) return false;
-        if (!types.get(Part.handleType).contains(configuration.getHandleType())) return false;
+        if (!getOptions().get(Part.handlebarType).contains(configuration.getHandlebarType())) return false;
+        if (!getOptions().get(Part.handlebarMaterial).contains(configuration.getHandlebarMaterial())) return false;
+        if (!getOptions().get(Part.handlebarGearshift).contains(configuration.getHandlebarGearshift())) return false;
+        if (!getOptions().get(Part.handleType).contains(configuration.getHandleType())) return false;
         return validatePartialConfiguration(configuration);
     }
 

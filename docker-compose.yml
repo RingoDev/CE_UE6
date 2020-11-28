@@ -15,9 +15,14 @@ services:
   factory:
     build: ./factory
     image: "ringodev/ce-factory:latest"
+    volumes:
+      - type: bind
+        source: ./factory/data/
+        target: /data/
     ports:
       - "8080:8080"
     environment:
+      - DATABASE_URL=/data/producer
       - SPRING_PROFILES_ACTIVE=production
   webpage:
     build: ./webpage
@@ -26,3 +31,4 @@ services:
       - "3000:3000"
 volumes:
   fibu:
+

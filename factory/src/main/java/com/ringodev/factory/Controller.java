@@ -54,7 +54,6 @@ public class Controller {
 
     @GetMapping("/handleType")
     public ResponseEntity<List<String>> getHandleType(@RequestParam String handlebarType, @RequestParam String handlebarMaterial, @RequestParam String handlebarGearshift) {
-        System.out.println("Whatsup");
         if (handlebarType == null || handlebarMaterial == null || handlebarGearshift == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(validator.getPossibleHandles(handlebarType, handlebarMaterial, handlebarGearshift), HttpStatus.OK);
