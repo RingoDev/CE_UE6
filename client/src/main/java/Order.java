@@ -1,5 +1,7 @@
 import java.io.Serializable;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class Order implements Serializable {
@@ -11,6 +13,7 @@ public class Order implements Serializable {
     private String handleMaterial;
     private int price;
     private long deliveryDate;
+    static SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
     public int getPrice() {
         return price;
@@ -86,6 +89,6 @@ public class Order implements Serializable {
     public String toString() {
         return MessageFormat.format(
                 "Order: '{'orderId=''{0}'', handlebarType=''{1}'', handlebarMaterial=''{2}'', handlebarGearshift=''{3}'', handleMaterial=''{4}'', price=''{5}'', deliveryDate=''{6}'''}'",
-                orderId, handlebarType, handlebarMaterial, handlebarGearshift, handleMaterial, price, deliveryDate);
+                orderId, handlebarType, handlebarMaterial, handlebarGearshift, handleMaterial, price + "€", format.format(new Date(deliveryDate)));
     }
 }

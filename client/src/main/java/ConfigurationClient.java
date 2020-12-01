@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.*;
 
 public class ConfigurationClient {
@@ -13,19 +14,21 @@ public class ConfigurationClient {
         handlebarType, handlebarMaterial, handlebarGearshift, handleType
     }
 
-    public static void main(String[] args) {
+    // throws Interrupted Exception if another thread interrupts during sleep...but there are no other threads
+    public static void main(String[] args) throws InterruptedException {
 
         // uncomment to run program for the user
         runProgramSafely();
     }
 
-    private static void runProgramSafely() {
+    private static void runProgramSafely() throws InterruptedException {
         try {
             runProgram();
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("The server wasn't ready for your request.");
             System.out.println("The Configuration Process will start again.\n");
+            Thread.sleep(1000);
             runProgramSafely();
         }
     }
@@ -79,6 +82,7 @@ public class ConfigurationClient {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(sb.toString()))
+                .timeout(Duration.ofSeconds(10))
                 .build();
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
@@ -95,14 +99,13 @@ public class ConfigurationClient {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8080/api/verify"))
+                .timeout(Duration.ofSeconds(10))
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .header("Content-Type", "application/json")
                 .build();
 
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
-
-        System.out.println(response.statusCode());
 
         if (response.statusCode() == 200) return objectMapper.readValue(response.body(), Order.class);
         else if (response.statusCode() == 400) throw new IllegalArgumentException(response.body());

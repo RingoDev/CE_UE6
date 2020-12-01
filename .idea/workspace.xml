@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6f524726-bbdc-42fa-984a-5998bb393cbc" name="Default Changelist" comment="" />
+    <list default="true" id="6f524726-bbdc-42fa-984a-5998bb393cbc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounting/fibu/orders.txt" beforeDir="false" afterPath="$PROJECT_DIR$/accounting/fibu/orders.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory/data/producer.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/factory/data/producer.mv.db" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +52,7 @@
       <workItem from="1606468489572" duration="9995000" />
       <workItem from="1606555620603" duration="38000" />
       <workItem from="1606556170977" duration="906000" />
+      <workItem from="1606664732669" duration="7000" />
     </task>
     <servers />
   </component>
